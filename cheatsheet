@@ -1,0 +1,63 @@
+1) ng new projectName
+2) npm install bootstrap
+3) ng g c folder/compName
+	at the html create the form
+@import '~bootstrap/dist/css/bootstrap.min.css';
+4) put the tag at the app.component.html
+5) ng g s folder/serviceName
+
+
+-----consuming ws
+6) import at the .ts service import {HttpClient} from '@angular/common/http';
+7) put in the constructor public http: HttpClient
+8) create function and do this http.get('url');
+
+9) app.module.ts import import {HttpClientModule} from '@angular/common/http';
+10) import the service like import {CryptoService} from './services/crypto.service';
+11) at the providers, put the service name
+12) at the imports put HttpClientModule
+
+13) .ts component that call service put import {CryptoService} from '../../services/crypto.service';
+14) put in the constructor constructor(public cryptoService: CryptoService) { }
+15) at the ngInit()
+this.cryptoService.getCryptos().subscribe((data) =>{
+      this.criptosObtained = data;
+      console.log(data);
+});
+
+16) at the view call as <option value=""  *ngFor="let crip of criptosObtained">{{crip.name}}</option>
+
+
+----creating useful form
+17) at the app.module.ts import {FormsModule} from '@angular/forms';
+18) put FormsModule at the imports
+19) at the component ts (where the form is defined) create an object with the form characteristics
+as 
+cryptForm = {
+    name: "",
+    selectedCrypto: "",
+    comments: ""
+  };
+
+20) at the view of the component (where is the form defined) put something as[(ngModel)]="cryptForm.name"
+
+21 modify the button
+ <button  class="btn btn-outline-success btn-block" (click)="sendForm()">Send form</button>  
+
+22 at the .ts component create the method that the button will invoke
+  
+
+----- for the routing
+
+23) at the app.module.ts import {RouterModule} from '@angular/router';
+24) at the app.module.ts create routes
+const routes = [
+  {path: "", component: CryptoFormComponent},
+  {path: "submitted", component: FormSubmittedComponent} //the components must exist
+]
+25) add the import
+ RouterModule.forRoot(routes)
+26) modify the view button as
+ <button [routerLink]="['submitted']" class="btn btn-outline-success btn-block" (click)="sendForm()">Send form</button>  
+27) at the app.component.html comment tags and put
+  <router-outlet></router-outlet>
