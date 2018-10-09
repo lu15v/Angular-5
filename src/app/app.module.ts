@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
+import {GitService} from './services/git-service.service';
 import { AppComponent } from './app.component';
+import { ShowWsComponent } from './components/show-ws/show-ws.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShowWsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [GitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
