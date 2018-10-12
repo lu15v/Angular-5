@@ -9,7 +9,7 @@
     <label for="crytpos" class="font-weight-bold">Favorite Crypto</label>
     <select id="crytpos" class="form-control"  [(ngModel)]="cryptForm.selectedCrypto" >
       <!--option value=""  *ngFor="let crip of criptosObtained">{{crip.name}}</option-->
-      <option [value]="crip" *ngFor="let crip of dummyCriptos">{{crip}}</option>
+      <option [value]="crip" *ngFor="let crip of criptosObtained">{{crip}}</option>
     </select>
   </div>
 

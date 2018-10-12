@@ -7,7 +7,7 @@ import {CryptoService} from '../../services/crypto.service';
 })
 export class CryptoFormComponent implements OnInit {
   dummyCriptos = ['Bitcoin', 'Celenium', 'Litecoin', 'ripple', 'stellar', 'monero'];
-  criptosObtained; 
+  criptosObtained: any=[]; 
 
   cryptForm = {
     name: "",
@@ -19,9 +19,12 @@ export class CryptoFormComponent implements OnInit {
 
   ngOnInit() {
     this.cryptoService.getCryptos().subscribe((data) =>{
-      this.criptosObtained = data;
-      console.log(data);
+       for(var x in data){
+        // this.criptosObtained.push(data[x]);
+        this.criptosObtained.push(data[x].name);
+       }
     });
+
   }
   sendForm(){
     console.log(this.cryptForm);
